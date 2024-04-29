@@ -110,9 +110,12 @@ public:
 	}
 	void Writeinfo()
 	{
-		cout << StudentName << endl;
-		cout << ID << endl;
-		cout << "Student Marks""\nSocial studies: " << SocialStudiesMarks << "\nEnglish: " << EnglishMarks << "\nMathematics: " << MathematicsMarks << "\nArabic: " << ArabicMarks << "\nScience: " << ScienceMarks << "\nSecond language: " << SecondLanguageMarks << endl;
+		fstream StudentRecord;
+		StudentRecord.open("Student Record.txt", ios::app);
+
+		StudentRecord << StudentName << endl;
+		StudentRecord << ID << endl;
+		StudentRecord << "Student Marks""\nSocial studies: " << SocialStudiesMarks << "\nEnglish: " << EnglishMarks << "\nMathematics: " << MathematicsMarks << "\nArabic: " << ArabicMarks << "\nScience: " << ScienceMarks << "\nSecond language: " << SecondLanguageMarks << endl;
 
 
 
