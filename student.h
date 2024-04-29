@@ -102,10 +102,14 @@ public:
 	}
 	void setGrade(char grade)
 	{
+
 		Grade = grade;
 	}
 	char getGrade()
 	{
+		Grade = ((SocialStudiesMarks + EnglishMarks + MathematicsMarks + ArabicMarks + ScienceMarks + SecondLanguageMarks) / 600) * 100 ;
+	
+		 
 		return Grade;
 	}
 	void Writeinfo()
@@ -116,6 +120,29 @@ public:
 		StudentRecord << StudentName << endl;
 		StudentRecord << ID << endl;
 		StudentRecord << "Student Marks""\nSocial studies: " << SocialStudiesMarks << "\nEnglish: " << EnglishMarks << "\nMathematics: " << MathematicsMarks << "\nArabic: " << ArabicMarks << "\nScience: " << ScienceMarks << "\nSecond language: " << SecondLanguageMarks << endl;
+		
+		
+		if (Grade <= 100 || Grade >= 90)
+		{
+			StudentRecord << "This student has achieved an A grade with a total mark percentage of " << Grade << endl;
+			StudentRecord << "This student is eligible for a scholarship" << endl;
+		}
+		if (Grade <= 89 || Grade >= 80)
+		{
+			StudentRecord << "This student has achieved a B grade with a total mark percentage of " << Grade << endl;
+		}
+		if (Grade <= 79 || Grade >= 70)
+		{
+			StudentRecord << "This student has achieved a C grade with a total mark percentage of " << Grade << endl;
+		}
+		if (Grade <= 69 || Grade >= 60)
+		{
+			StudentRecord << "This student has achieved a D grade with a total mark percentage of " << Grade << endl;
+		}
+		if (Grade < 60)
+		{
+			StudentRecord << "This student has failed and got an F grade with a total mark percentage of " << Grade << endl;
+		}
 
 
 
