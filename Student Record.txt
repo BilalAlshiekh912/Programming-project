@@ -1,15 +1,10 @@
-Bilal Abdelsalam Ibrahim Ali
+Bilal Abdelsalam Ibrahim ali
 237513
 Student Marks
-Social studies: 100
-English: 100
-Mathematics: 100
-Arabic: 100
-Science: 100
-Second language: 100
-This student has achieved an A grade with a total mark percentage of Ì
-This student is eligible for a scholarship
-This student has achieved a B grade with a total mark percentage of Ì
-This student has achieved a C grade with a total mark percentage of Ì
-This student has achieved a D grade with a total mark percentage of Ì
-This student has failed and got an F grade with a total mark percentage of Ì
+Social studies: 90
+English: 91
+Mathematics: 92
+Arabic: 93
+Science: 95
+Second language: 94
+This student has failed and got an F grade with a total mark percentage of -9.25596e+61

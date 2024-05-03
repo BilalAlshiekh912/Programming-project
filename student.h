@@ -2,151 +2,148 @@
 #include<string>
 #include<fstream>
 #include<vector>
-
+#include <list>
 using namespace std;
 
 
 
 class Student
 {
-private:
+private :
 	string StudentName;
-	int ID;
-	double SocialStudiesMarks, EnglishMarks, MathematicsMarks, ArabicMarks, ScienceMarks, SecondLanguageMarks;
-	char Grade;
-
-public:
-
-	void setName(string studentname)
+	int StudentID;
+	double ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
+	double Grade;
+public :
+	void setname(string studentname)
 	{
 
 		StudentName = studentname;
 	}
-	string getName()
+	string getname()
 	{
-		cout << "Please enter the student's full name." << endl;
-		getline(cin, StudentName);
+
 		return StudentName;
 	}
-	void setID(int id)
+	void setID(int studentid)
 	{
-		ID = id;
+
+		StudentID = studentid;
 	}
-	int getID()
+	int getid()
 	{
-		cout << "Please enter the student's ID." << endl;
-		cin >> ID;
-		return ID;
+		return StudentID;
 	}
-	void setMarks(double socialstudiesmarks, double englishmarks, double mathematicsmarks, double arabicmarks, double sciencemarks, double secondlanguagemarks)
+	void setmarks(double arabicmarks, double socialstudiesmarks,double englishmarks,double secondlanguagemarks , double mathematicsmarks , double sciencemarks)
 	{
+		ArabicMarks = arabicmarks;
 		SocialStudiesMarks = socialstudiesmarks;
 		EnglishMarks = englishmarks;
-		MathematicsMarks = mathematicsmarks;
-		ArabicMarks = arabicmarks;
-		ScienceMarks = sciencemarks;
 		SecondLanguageMarks = secondlanguagemarks;
+		MathematicsMarks = mathematicsmarks;
+		ScienceMarks = sciencemarks;
+
 	}
-	double getMarks()
+	double getmarks() {
+	
+		return ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
+	}
+	void setgrade(double grade)
+	{
+		Grade = grade;
+	}
+	double getgrade()
+	{
+		return Grade;
+	}
+
+
+	double addmarks()
 	{
 		
-		cout << "Please enter the student's Social studies mark" << endl;
-		ssm:
-		cin >> SocialStudiesMarks;
-		if (SocialStudiesMarks > 100 || SocialStudiesMarks < 0)
-		{
-			cout << "Please enter a valid mark between 0 and 100" << endl;
-			goto ssm;
-		}
-		cout << "Please enter the student's English mark" << endl; 
-		em:
-		cin >> EnglishMarks;
-		if (EnglishMarks > 100 || EnglishMarks < 0)
-		{
-			cout << "Please enter a valid mark between 0 and 100" << endl;
-			goto em;
-		}
-		cout << "Please enter the student's Mathematics mark" << endl;
-		mm:
-		cin >> MathematicsMarks;
-		if (MathematicsMarks > 100 || MathematicsMarks < 0)
-		{
-			cout << "Please enter a valid mark between 0 and 100" << endl;
-			goto mm;
-		}
-		cout << "Please enter the student's Arabic mark" << endl;
+		cout << "Please enter the students marks in Arabic" << endl;
 		am:
 		cin >> ArabicMarks;
 		if (ArabicMarks > 100 || ArabicMarks < 0)
 		{
-			cout << "Please enter a valid mark between 0 and 100" << endl;
+			cout << "Please enter a valid number between 0 and 100" << endl;
 			goto am;
 		}
-		cout << "Please enter the student's Science mark" << endl;
-		sm:
-		cin >> ScienceMarks;
-		if (ScienceMarks > 100 || ScienceMarks < 0)
+		
+		cout << "Please enter the students marks in Social Studies" << endl; 
+		ssm:
+		cin >> SocialStudiesMarks;
+		if (SocialStudiesMarks > 100 || SocialStudiesMarks < 0)
 		{
-			cout << "Please enter a valid mark between 0 and 100" << endl;
-			goto sm;
+			cout << "Please enter a valid number between 0 and 100" << endl;
+			goto ssm;
 		}
-		cout << "Please enter the student's Second language (french,italian,spanish,german,etc...) mark" << endl;
+		cout << "Please enter the students marks in English" << endl;
+		em:
+		cin >> EnglishMarks;
+		if (EnglishMarks > 100 || EnglishMarks < 0)
+		{
+			cout << "Please enter a valid number between 0 and 100" << endl;
+			goto em;
+		}
+		cout << "Please enter the students marks in The second language (French , german , italian etc..)" << endl;
 		slm:
 		cin >> SecondLanguageMarks;
 		if (SecondLanguageMarks > 100 || SecondLanguageMarks < 0)
 		{
-			cout << "Please enter a valid mark between 0 and 100" << endl;
+			cout << "Please enter a valid number between 0 and 100" << endl;
 			goto slm;
 		}
-		return SocialStudiesMarks, EnglishMarks, MathematicsMarks, ArabicMarks, ScienceMarks, SecondLanguageMarks;
+		cout << "Please enter the students marks in Mathematics" << endl;
+		mm:
+		cin >> MathematicsMarks;
+		if (MathematicsMarks > 100 || MathematicsMarks < 0)
+		{
+			cout << "Please enter a valid number between 0 and 100" << endl;
+			goto mm;
+		}
+		cout << "Please enter the students marks in Science" << endl;
+		sm:
+		cin >> ScienceMarks;
+		if (ScienceMarks > 100 || ScienceMarks < 0)
+		{
+			cout << "Please enter a valid number between 0 and 100" << endl;
+			goto sm;
+		}
+		return ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
 	}
-	void setGrade(char grade)
-	{
+	double calculategrade() {
 
-		Grade = grade;
-	}
-	char getGrade()
-	{
-		Grade = ((SocialStudiesMarks + EnglishMarks + MathematicsMarks + ArabicMarks + ScienceMarks + SecondLanguageMarks) / 600) * 100 ;
-	
-		 
+		Grade = ((ArabicMarks + SocialStudiesMarks + EnglishMarks + SecondLanguageMarks + MathematicsMarks + ScienceMarks) / 600) * 100;
+		
+		if (Grade <= 100 && Grade >= 90)
+		{
+			cout << "This student has achived an A grade with a total percentage of " << Grade << endl;
+		
+		}
+		else if (Grade <= 89 && Grade >= 80)
+		{
+			cout << "This student has achived an B grade with a total percentage of " << Grade << endl;
+
+		}
+		else if (Grade <= 79 && Grade >= 70)
+		{
+			cout << "This student has achived an C grade with a total percentage of " << Grade << endl;
+
+		}
+		else if (Grade <= 69 && Grade >= 60)
+		{
+			cout << "This student has achived an D grade with a total percentage of " << Grade << endl;
+
+		}
+		else
+		{
+			cout << "This student has failed and got an F grade witha total percentage of " << Grade << endl;
+		}
+		
+
+
+
 		return Grade;
 	}
-	void Writeinfo()
-	{
-		fstream StudentRecord;
-		StudentRecord.open("Student Record.txt", ios::app);
-
-		StudentRecord << StudentName << endl;
-		StudentRecord << ID << endl;
-		StudentRecord << "Student Marks""\nSocial studies: " << SocialStudiesMarks << "\nEnglish: " << EnglishMarks << "\nMathematics: " << MathematicsMarks << "\nArabic: " << ArabicMarks << "\nScience: " << ScienceMarks << "\nSecond language: " << SecondLanguageMarks << endl;
-		
-		
-		if (Grade <= 100 || Grade >= 90)
-		{
-			StudentRecord << "This student has achieved an A grade with a total mark percentage of " << Grade << endl;
-			StudentRecord << "This student is eligible for a scholarship" << endl;
-		}
-		if (Grade <= 89 || Grade >= 80)
-		{
-			StudentRecord << "This student has achieved a B grade with a total mark percentage of " << Grade << endl;
-		}
-		if (Grade <= 79 || Grade >= 70)
-		{
-			StudentRecord << "This student has achieved a C grade with a total mark percentage of " << Grade << endl;
-		}
-		if (Grade <= 69 || Grade >= 60)
-		{
-			StudentRecord << "This student has achieved a D grade with a total mark percentage of " << Grade << endl;
-		}
-		if (Grade < 60)
-		{
-			StudentRecord << "This student has failed and got an F grade with a total mark percentage of " << Grade << endl;
-		}
-
-
-
-
-	}
-
 };

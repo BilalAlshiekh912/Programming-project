@@ -130,6 +130,7 @@
     <ClCompile Include="Programming project.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="StudentManagementSystem.h" />
     <ClInclude Include="student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
