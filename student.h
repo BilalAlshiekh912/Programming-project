@@ -3,18 +3,22 @@
 #include<fstream>
 #include<vector>
 #include <list>
+
 using namespace std;
 
 
 
-class Student
+class Student 
 {
 private :
 	string StudentName;
 	int StudentID;
 	double ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
 	double Grade;
+	
 public :
+	
+	
 	void setname(string studentname)
 	{
 
@@ -22,7 +26,8 @@ public :
 	}
 	string getname()
 	{
-
+		cout << "Please enter the student's full name" << endl;
+		getline(cin, StudentName);
 		return StudentName;
 	}
 	void setID(int studentid)
@@ -32,6 +37,8 @@ public :
 	}
 	int getid()
 	{
+		cout << "Please enter the student's ID" << endl;
+		cin >> StudentID;
 		return StudentID;
 	}
 	void setmarks(double arabicmarks, double socialstudiesmarks,double englishmarks,double secondlanguagemarks , double mathematicsmarks , double sciencemarks)
@@ -56,8 +63,6 @@ public :
 	{
 		return Grade;
 	}
-
-
 	double addmarks()
 	{
 		
@@ -140,10 +145,81 @@ public :
 		{
 			cout << "This student has failed and got an F grade witha total percentage of " << Grade << endl;
 		}
-		
-
+	
 
 
 		return Grade;
 	}
+
+	
+
+	
+	
+	void WriteData()
+	{
+		fstream StudentRecord;
+		StudentRecord.open("Students Record", ios::app);
+		StudentRecord << StudentName << endl;
+		StudentRecord << StudentID << endl;
+		StudentRecord << "Arabic Marks: " << ArabicMarks << "\n Social Studies Marks: " << SocialStudiesMarks << "\n English Marks: " << EnglishMarks << "\n Second Language Marks: " << SecondLanguageMarks << "\n Mathematics Marks:  " << MathematicsMarks << "\n Science Marks: " << ScienceMarks << endl;
+		if (Grade <= 100 && Grade >= 90)
+		{
+			StudentRecord << "This student has achived an A grade with a total percentage of " << Grade << endl;
+
+		}
+		else if (Grade <= 89 && Grade >= 80)
+		{
+			StudentRecord << "This student has achived an B grade with a total percentage of " << Grade << endl;
+
+		}
+		else if (Grade <= 79 && Grade >= 70)
+		{
+			StudentRecord << "This student has achived an C grade with a total percentage of " << Grade << endl;
+
+		}
+		else if (Grade <= 69 && Grade >= 60)
+		{
+			StudentRecord << "This student has achived an D grade with a total percentage of " << Grade << endl;
+
+		}
+		else
+		{
+			StudentRecord << "This student has failed and got an F grade witha total percentage of " << Grade << endl;
+		}
+	}
+
+	
+	
+};
+
+
+
+
+
+class StudentManagementSystem
+{
+private:
+	vector <Student> Students;
+	
+public:
+	
+	Student student1;
+
+
+
+
+	void AddStudentRecord()
+	{
+		
+		student1.getname();
+		student1.getid();
+		student1.addmarks();
+		student1.calculategrade();
+		student1.WriteData();
+
+	
+
+
+	}
+
 };
