@@ -7,14 +7,20 @@
 using namespace std;
 int main()
 {
+	SearchEngine student;
 	
+	student.Searchbyname();
+			student.searchbyid();
+	
+		
+		
+		
 	
 	
 	
 
 
-		StudentManagementSystem student1;
-		student1.SearchStudentRecord();
+	
 	
 	
 
