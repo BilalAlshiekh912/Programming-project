@@ -1,0 +1,9 @@
+Name: Bilal Abdelsalam Ibrahim
+Student ID: 237513
+Arabic Marks: 94
+ Social Studies Marks: 88
+ English Marks: 95
+ Second Language Marks: 86
+ Mathematics Marks:  95
+ Science Marks: 92
+This student has achived an A grade with a total percentage of 91.6667

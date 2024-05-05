@@ -159,8 +159,8 @@ public :
 	{
 		fstream StudentRecord;
 		StudentRecord.open("Students Record.txt", ios::app);
-		StudentRecord << StudentName << endl;
-		StudentRecord << StudentID << endl;
+		StudentRecord << "Name: " << StudentName << endl;
+		StudentRecord << "Student ID: " <<  StudentID << endl;
 		StudentRecord << "Arabic Marks: " << ArabicMarks << "\n Social Studies Marks: " << SocialStudiesMarks << "\n English Marks: " << EnglishMarks << "\n Second Language Marks: " << SecondLanguageMarks << "\n Mathematics Marks:  " << MathematicsMarks << "\n Science Marks: " << ScienceMarks << endl;
 		if (Grade <= 100 && Grade >= 90)
 		{
