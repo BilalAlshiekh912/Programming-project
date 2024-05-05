@@ -123,27 +123,27 @@ public :
 		
 		if (Grade <= 100 && Grade >= 90)
 		{
-			cout << "This student has achived an A grade with a total percentage of " << Grade << endl;
+			cout << "This student has achived an A grade with a total percentage of " << Grade << "%" << endl;
 		
 		}
 		else if (Grade <= 89 && Grade >= 80)
 		{
-			cout << "This student has achived an B grade with a total percentage of " << Grade << endl;
+			cout << "This student has achived an B grade with a total percentage of " << Grade << "%" <<  endl;
 
 		}
 		else if (Grade <= 79 && Grade >= 70)
 		{
-			cout << "This student has achived an C grade with a total percentage of " << Grade << endl;
+			cout << "This student has achived an C grade with a total percentage of " << Grade << "%" << endl;
 
 		}
 		else if (Grade <= 69 && Grade >= 60)
 		{
-			cout << "This student has achived an D grade with a total percentage of " << Grade << endl;
+			cout << "This student has achived an D grade with a total percentage of " << Grade << "%" << endl;
 
 		}
 		else
 		{
-			cout << "This student has failed and got an F grade witha total percentage of " << Grade << endl;
+			cout << "This student has failed and got an F grade witha total percentage of " << Grade << "%" << endl;
 		}
 	
 
@@ -159,32 +159,32 @@ public :
 	{
 		fstream StudentRecord;
 		StudentRecord.open("Students Record.txt", ios::app);
-		StudentRecord << "Name: " << StudentName << endl;
+		StudentRecord << StudentName << endl;
 		StudentRecord << "Student ID: " <<  StudentID << endl;
-		StudentRecord << "Arabic Marks: " << ArabicMarks << "\n Social Studies Marks: " << SocialStudiesMarks << "\n English Marks: " << EnglishMarks << "\n Second Language Marks: " << SecondLanguageMarks << "\n Mathematics Marks:  " << MathematicsMarks << "\n Science Marks: " << ScienceMarks << endl;
+		StudentRecord << "Arabic Marks: " << ArabicMarks << "\n"" Social Studies Marks: " << SocialStudiesMarks << "\n"" English Marks: " << EnglishMarks << "\n"" Second Language Marks: " << SecondLanguageMarks << "\n"" Mathematics Marks:  " << MathematicsMarks << "\n"" Science Marks: " << ScienceMarks << endl;
 		if (Grade <= 100 && Grade >= 90)
 		{
-			StudentRecord << "This student has achived an A grade with a total percentage of " << Grade << endl;
+			StudentRecord << "This student has achived an A grade with a total percentage of " << Grade << "%" << endl;
 
 		}
 		else if (Grade <= 89 && Grade >= 80)
 		{
-			StudentRecord << "This student has achived an B grade with a total percentage of " << Grade << endl;
+			StudentRecord << "This student has achived an B grade with a total percentage of " << Grade << "%" << endl;
 
 		}
 		else if (Grade <= 79 && Grade >= 70)
 		{
-			StudentRecord << "This student has achived an C grade with a total percentage of " << Grade << endl;
+			StudentRecord << "This student has achived an C grade with a total percentage of " << Grade << "%" << endl;
 
 		}
 		else if (Grade <= 69 && Grade >= 60)
 		{
-			StudentRecord << "This student has achived an D grade with a total percentage of " << Grade << endl;
+			StudentRecord << "This student has achived an D grade with a total percentage of " << Grade << "%" << endl;
 
 		}
 		else
 		{
-			StudentRecord << "This student has failed and got an F grade witha total percentage of " << Grade << endl;
+			StudentRecord << "This student has failed and got an F grade witha total percentage of " << Grade << "%" << endl;
 		}
 	}
 
@@ -192,11 +192,7 @@ public :
 	
 };
 
-
-
-
-
-class StudentManagementSystem
+class StudentManagementSystem : public Student
 {
 private:
 	vector <Student> Students;
@@ -221,5 +217,44 @@ public:
 
 
 	}
+	void SearchStudentRecord()
+	{
+		string StudentName;
+		string StudentID;
+		string ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
+		string Grade;
+		string Search;
+		
+		cout << "Please enter the student name you want to search for" << endl;
+		getline(cin, Search);
 
+	ifstream StudentRecord;
+	StudentRecord.open("Students Record.txt" , ios::in);
+	while (!StudentRecord.eof())
+	{
+		getline(StudentRecord, StudentName);
+		getline(StudentRecord, StudentID);
+		getline(StudentRecord, ArabicMarks);
+		getline(StudentRecord, SocialStudiesMarks);
+		getline(StudentRecord, EnglishMarks);
+		getline(StudentRecord, SecondLanguageMarks);
+		getline(StudentRecord, MathematicsMarks);
+		getline(StudentRecord, ScienceMarks);
+		getline(StudentRecord, Grade);
+		
+		if (StudentName == Search)
+		{
+			cout << StudentName << endl;
+			cout << StudentID << endl;
+			cout << ArabicMarks << endl;
+			cout << SocialStudiesMarks << endl;
+			cout << EnglishMarks << endl;
+			cout << SecondLanguageMarks << endl;
+			cout << MathematicsMarks << endl;
+			cout << ScienceMarks << endl;
+			cout << Grade << endl;
+		}
+	}
+	}
+	
 };

@@ -14,7 +14,7 @@ int main()
 
 
 		StudentManagementSystem student1;
-		student1.AddStudentRecord();
+		student1.SearchStudentRecord();
 	
 	
 
