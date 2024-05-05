@@ -158,7 +158,7 @@ public :
 	void WriteData()
 	{
 		fstream StudentRecord;
-		StudentRecord.open("Students Record", ios::app);
+		StudentRecord.open("Students Record.txt", ios::app);
 		StudentRecord << StudentName << endl;
 		StudentRecord << StudentID << endl;
 		StudentRecord << "Arabic Marks: " << ArabicMarks << "\n Social Studies Marks: " << SocialStudiesMarks << "\n English Marks: " << EnglishMarks << "\n Second Language Marks: " << SecondLanguageMarks << "\n Mathematics Marks:  " << MathematicsMarks << "\n Science Marks: " << ScienceMarks << endl;
