@@ -34,3 +34,57 @@ Arabic Marks: 97
  Mathematics Marks:  97
  Science Marks: 97
 This student has achived an A grade with a total percentage of 97%
+Ahmed Fahmy
+774158
+Arabic Marks: 94
+ Social Studies Marks: 94
+ English Marks: 94
+ Second Language Marks: 94
+ Mathematics Marks:  94
+ Science Marks: 94
+This student has achived an A grade with a total percentage of 94%
+Abdelrahman Mohamed
+445217
+Arabic Marks: 95
+ Social Studies Marks: 95
+ English Marks: 95
+ Second Language Marks: 95
+ Mathematics Marks:  95
+ Science Marks: 95
+This student has achived an A grade with a total percentage of 95%
+Khaled Nasser
+221453
+Arabic Marks: 99
+ Social Studies Marks: 99
+ English Marks: 99
+ Second Language Marks: 99
+ Mathematics Marks:  99
+ Science Marks: 99
+This student has achived an A grade with a total percentage of 99%
+
+0
+Arabic Marks: 99
+ Social Studies Marks: 99
+ English Marks: 99
+ Second Language Marks: 99
+ Mathematics Marks:  99
+ Science Marks: 99
+This student has achived an A grade with a total percentage of 99%
+Khaled Nasser
+224153
+Arabic Marks: 99
+ Social Studies Marks: 99
+ English Marks: 99
+ Second Language Marks: 99
+ Mathematics Marks:  99
+ Science Marks: 99
+This student has achived an A grade with a total percentage of 99%
+Ahmed Ayman
+22
+Arabic Marks: 22
+ Social Studies Marks: 22
+ English Marks: 22
+ Second Language Marks: 22
+ Mathematics Marks:  22
+ Science Marks: 22
+This student has failed and got an F grade witha total percentage of 22%

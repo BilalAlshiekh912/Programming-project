@@ -7,13 +7,16 @@
 using namespace std;
 int main()
 {
-	SearchEngine student;
 	
-	student.Searchbyname();
-			student.searchbyid();
+	Menu student1;
+	student1.DisplayMenu();
+	student1.ExecuteChoice();
+		
+
+
+
 	
-		
-		
+	
 		
 	
 	

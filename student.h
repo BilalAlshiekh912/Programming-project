@@ -3,8 +3,8 @@
 #include<fstream>
 #include<vector>
 #include <list>
-
 using namespace std;
+
 
 
 
@@ -20,7 +20,7 @@ public :
 	
 	
 
-	string getname()
+	string getName()
 	{
 		
 		
@@ -28,7 +28,7 @@ public :
 		return StudentName;
 
 	}
-	void setname(string studentname)
+	void setName(string studentname)
 	{
 
 		StudentName = studentname;
@@ -38,7 +38,7 @@ public :
 
 		StudentID = studentid;
 	}
-	int getid()
+	int getID() 
 	{
 		
 		
@@ -46,7 +46,7 @@ public :
 		return StudentID;
 		
 	}
-	void setmarks(double arabicmarks, double socialstudiesmarks,double englishmarks,double secondlanguagemarks , double mathematicsmarks , double sciencemarks)
+	void setMarks(double arabicmarks, double socialstudiesmarks,double englishmarks,double secondlanguagemarks , double mathematicsmarks , double sciencemarks)
 	{
 		ArabicMarks = arabicmarks;
 		SocialStudiesMarks = socialstudiesmarks;
@@ -56,19 +56,19 @@ public :
 		ScienceMarks = sciencemarks;
 
 	}
-	double getmarks() {
+	double getMarks() const {
 	
 		return ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
 	}
-	void setgrade(double grade)
+	void setGrade(double grade)
 	{
 		Grade = grade;
 	}
-	double getgrade()
+	double getGrade() const
 	{
 		return Grade;
 	}
-	double addmarks()
+	double addMarks()
 	{
 		
 		cout << "Please enter the students marks in Arabic" << endl;
@@ -122,7 +122,7 @@ public :
 		}
 		return ArabicMarks, SocialStudiesMarks, EnglishMarks, SecondLanguageMarks, MathematicsMarks, ScienceMarks;
 	}
-	double calculategrade() {
+	double calculateGrade() {
 
 		Grade = ((ArabicMarks + SocialStudiesMarks + EnglishMarks + SecondLanguageMarks + MathematicsMarks + ScienceMarks) / 600) * 100;
 		
@@ -198,7 +198,7 @@ public :
 	
 	void ResetData()
 	{
-		getname() = "";
+		getName() = "";
 		ArabicMarks = 0;
 		SocialStudiesMarks = 0;
 		EnglishMarks = 0;
@@ -209,66 +209,39 @@ public :
 	}
 	
 };
-
-class StudentManagementSystem : public Student
-{
-private:
-
-
-public:
-
-	void AddStudentRecord()
-	{
-
-		cout << "Please enter the student's full name" << endl;
-		getname();
-		cout << "Please enter the student's ID" << endl;
-		getid();
-		addmarks();
-		calculategrade();
-		WriteData();
-		ResetData();
-
-
-
-	}
-		void SearchStudentRecord()
-		{
-			int choice;
-
-		}
-};
-class SearchEngine : public StudentManagementSystem
+class SearchEngine : public Student
 {
 private:
 	string Data[9];
-public :
+
+public:
+
+	
+	void setdata(string data[])
+	{
+		data = Data;
+
+	}
 	void Searchbyname()
 	{
 
-	
-		string Search;
 
+		string SearchName;
 		cout << "Please enter the student name you want to search for" << endl;
-		getline(cin, Search);
-
+		cin.ignore(1, NULL);
+		getline(cin, SearchName);
 		ifstream StudentRecord;
 		StudentRecord.open("Students Record.txt", ios::in);
 		while (!StudentRecord.eof())
 		{
-			
-			getline(StudentRecord, Data[0]);
-			getline(StudentRecord, Data[1]);
-			getline(StudentRecord, Data[2]);
-			getline(StudentRecord, Data[3]);
-			getline(StudentRecord, Data[4]);
-			getline(StudentRecord, Data[5]);
-			getline(StudentRecord, Data[6]);
-			getline(StudentRecord, Data[7]);
-			getline(StudentRecord, Data[8]);
+	
+			for (int i = 0; i < 9; i++)
+			{
+				getline(StudentRecord, Data[i]);
 
-			
-			if (Data[0] == Search)
+			}
+
+			if (Data[0] == SearchName)
 			{
 				cout << "The Student was found" << endl;
 				cout << "Name: " << Data[0] << endl;
@@ -282,114 +255,56 @@ public :
 				cout << Data[8] << endl;
 				break;
 			}
-			else if (Data[0] != Search)
+			else if (Data[0] != SearchName)
 			{
-				Data[0] = "";
-				Data[1] = "";
-				Data[2] = "";
-				Data[3] = "";
-				Data[4] = "";
-				Data[5] = "";
-				Data[6] = "";
-				Data[7] = "";
-				Data[8] = "";
-
+				for (int i = 0; i < 9; i++ )
+				{
+					Data[i] = "";
+				}
 
 			}
 			
 
-			
-					
-			
-				
+
+
+
+
 		}
-		if (Data[0] != Search || StudentRecord.eof())
+		
+		if (Data[0] != SearchName)
 		{
-			int choice;
-			cout << "The Student ith the ID: " << Search << " was not found" << endl;
-		StudentnotFoundMenu:
-			cout << "Press: \n" << "1.To add a new student to the record\n" << "2.To research the student record " << endl;
-			cin >> choice;
-			if (choice < 1 || choice > 2)
-			{
-				cout << "Invalid option" << endl;
-				goto StudentnotFoundMenu;
-			}
-			switch (choice)
-			{
-			case 1:
-				ResetData();
-				AddStudentRecord();
-			case 2:
-				int choice1;
-			StudentnotFoundMenu1:
-				cout << "Press: \n" << "1.To Search student By Name\n" << "2.To Search student by ID " << endl;
-				cin >> choice1;
-				if (choice1 < 1 || choice1 > 2)
-				{
-					cout << "Invalid option" << endl;
-					goto StudentnotFoundMenu1;
-				}
-				switch (choice)
-				{
-				case 1:
-				
-					
-						Data[0] = "";
-						Data[1] = "";
-						Data[2] = "";
-						Data[3] = "";
-						Data[4] = "";
-						Data[5] = "";
-						Data[6] = "";
-						Data[7] = "";
-						Data[8] = "";					
-					Searchbyname();
-				case 2:
-					
-						Data[0] = "";
-						Data[1] = "";
-						Data[2] = "";
-						Data[3] = "";
-						Data[4] = "";
-						Data[5] = "";
-						Data[6] = "";
-						Data[7] = "";
-						Data[8] = "";
-					searchbyid();
-				}
-			}
+			cout << "The student name you searched for is not in the system" << endl; 
 		}
-		
 		StudentRecord.close();
-		
-			
-
-		
 	}
 
-	void searchbyid()
+
+
+
+
+
+
+	void Searchbyid()
 	{
-		string Search;
-
+		
+	
 		cout << "Please enter the student ID you want to search for" << endl;
-		getline(cin, Search);
+		string SearchID;
+		cin.ignore(1, NULL);
+		getline(cin,SearchID);
 
 		ifstream StudentRecord;
 		StudentRecord.open("Students Record.txt", ios::in);
+	
 		while (!StudentRecord.eof())
 		{
-			getline(StudentRecord, Data[0]);
-			getline(StudentRecord, Data[1]);
-			getline(StudentRecord, Data[2]);
-			getline(StudentRecord, Data[3]);
-			getline(StudentRecord, Data[4]);
-			getline(StudentRecord, Data[5]);
-			getline(StudentRecord, Data[6]);
-			getline(StudentRecord, Data[7]);
-			getline(StudentRecord, Data[8]);
+			
+			for (int i = 0; i < 9; i++)
+			{
+				getline(StudentRecord, Data[i]);
 
-			if (Data[1] == Search)
+			}
+			if (Data[1] == SearchID)
 			{
 				cout << "The Student was found" << endl;
 				cout << "Name: " << Data[0] << endl;
@@ -403,91 +318,149 @@ public :
 				cout << Data[8] << endl;
 				break;
 			}
-			 if (Data[1] != Search)
+			else if (Data[1] != SearchID)
 			{
-				Data[0] = "";
-				Data[1] = "";
-				Data[2] = "";
-				Data[3] = "";
-				Data[4] = "";
-				Data[5] = "";
-				Data[6] = "";
-				Data[7] = "";
-				Data[8] = "";
-
+				for (int i = 0; i < 9; i++)
+				{
+					Data[i] = "";
+				}
 
 			}
-			
-			 
-			 if (Data[1] != Search || StudentRecord.eof())
-			 {
-				 int choice;
-				 cout << "The Student with the ID: " << Search << " was not found" << endl;
-			 StudentnotFoundMenu:
-				 cout << "Press: \n" << "1.To add a new student to the record\n" << "2.To research the student record " << endl;
-				 cin >> choice;
-				 if (choice < 1 || choice > 2)
-				 {
-					 cout << "Invalid option" << endl;
-					 goto StudentnotFoundMenu;
-				 }
-				 switch (choice)
-				 {
-				 case 1:
-					 ResetData();
-					 AddStudentRecord();
-				 case 2:
-					 int choice1;
-					 StudentnotFoundMenu1:
-					 cout << "Press: \n" << "1.To Search student By Name\n" << "2.To Search student by ID " << endl;
-					 cin >> choice1;
-					 if (choice1 < 1 || choice1 > 2)
-					 {
-						 cout << "Invalid option" << endl;
-						 goto StudentnotFoundMenu1;
-					 }
-					 switch (choice)
-					 {
-					 case 1:
-						 
-							 Data[0] = "";
-							 Data[1] = "";
-							 Data[2] = "";
-							 Data[3] = "";
-							 Data[4] = "";
-							 Data[5] = "";
-							 Data[6] = "";
-							 Data[7] = "";
-							 Data[8] = "";
 
 
-						 
-						 Searchbyname();
-					 case 2:
-						 
-							 Data[0] = "";
-							 Data[1] = "";
-							 Data[2] = "";
-							 Data[3] = "";
-							 Data[4] = "";
-							 Data[5] = "";
-							 Data[6] = "";
-							 Data[7] = "";
-							 Data[8] = "";
-
-
-						 
-						 searchbyid();
-					 }
-				 }
-			 }
-
-
-			
-
+		
 		}
-		StudentRecord.close();
-
+			if (Data[1] != SearchID && StudentRecord.eof() )
+			{
+			cout << "The ID you searched for is unavailable in the system" <<  endl;
+			
+			}
+		
 	}
 
-};
+
+	
+
+	};
+	
+
+
+
+
+	class StudentManagementSystem : public SearchEngine
+
+	{
+	private:
+
+
+	public:
+
+		void AddStudentRecord()
+		{
+			cout << "Please enter the students name" << endl;
+			getName();
+			cout << "Please enter the students ID" << endl;
+			getID();
+			addMarks();
+			calculateGrade();
+			WriteData();
+			ResetData();
+
+
+		}
+
+		void SearchStudentRecord()
+		{
+
+			int choice;
+			cout << "1.Search by Name\n" "2.Search by ID" << endl;
+				s:
+					cin >> choice;
+		if (choice == 1)
+		{
+			Searchbyname();
+		}
+		else if (choice == 2)
+		{
+			Searchbyid();
+		}
+		else
+		{
+			cout << "Please enter a valid number" << endl;
+			goto s;
+		}
+			
+		};
+
+
+
+
+
+	};
+	class Menu : public StudentManagementSystem
+	{
+	private:
+		int choice;
+	public :
+		void DisplayMenu()
+		{
+			cout << "Welcome to Student Management System" << endl;
+			cout << "1. Add student record" << endl;
+			cout << "2. Search student record" << endl;
+			cout << "3. Modify student record" << endl;
+			cout << "4. Generate mark sheet" << endl;
+			cout << "5. Delete student record" << endl;
+			cout << "6. Change admin password" << endl;
+			cout << "7. Exit" << endl;
+			cout << "Enter your choice: ";
+		}
+		int SelectOption()
+		{
+			int option;
+			cin >> option;
+			return option;
+		}
+		void ExecuteChoice() {
+			int choice;
+			choice = SelectOption();
+			switch (choice) {
+			case 1: 
+			{
+				AddStudentRecord();
+				break;
+			}
+
+			case 2:
+			{
+				SearchStudentRecord();
+				break;
+			}
+			case 3:
+			{
+				break;
+			}
+			case 4:
+			{
+				break;
+			}
+			case 5:
+			{
+				break;
+			}
+			case 6:
+			{
+				break;
+			}
+			case 7:
+			{
+
+				break;
+			}
+			default:
+				cout << "Invalid Choice" << endl;
+				break;
+			}
+		}
+
+
+	};
