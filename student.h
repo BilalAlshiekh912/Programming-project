@@ -209,7 +209,69 @@ public :
 	}
 	
 };
-class SearchEngine : public Student
+class Marksheet
+{
+private:
+	string DATA[9];
+public:
+	void GenerateMarksheet()
+	{
+
+		cout << "Please enter the student Name and ID you want to search for" << endl;
+		string SearchName;
+		string SearchId;
+		cin.ignore(1, NULL);
+		getline(cin, SearchName);
+		
+		getline(cin, SearchId);
+
+		ifstream StudentRecord;
+		StudentRecord.open("Students Record.txt", ios::in);
+
+		while (!StudentRecord.eof())
+		{
+
+			for (int i = 0; i < 9; i++)
+			{
+				getline(StudentRecord, DATA[i]);
+
+			}
+			if (DATA[0] == SearchName && DATA[1] == SearchId)
+			{
+				cout << "The Student " << DATA[0] << " was found" << endl;
+
+				cout << DATA[2] << endl;
+				cout << DATA[3] << endl;
+				cout << DATA[4] << endl;
+				cout << DATA[5] << endl;
+				cout << DATA[6] << endl;
+				cout << DATA[7] << endl;
+				cout << DATA[8] << endl;
+				break;
+			}
+			else if (DATA[0] != SearchName)
+			{
+				for (int i = 0; i < 9; i++)
+				{
+					DATA[i] = "";
+				}
+
+			}
+
+
+
+		}
+		if (DATA[0] != SearchName && StudentRecord.eof())
+		{
+			cout << "The Name you searched for is unavailable in the system" << endl;
+
+		}
+
+	}
+
+
+};
+class SearchEngine : public Student , public Marksheet 
 {
 private:
 	string Data[9];
@@ -347,7 +409,7 @@ public:
 
 
 
-	class StudentManagementSystem : public SearchEngine
+	class StudentManagementSystem : public SearchEngine 
 
 	{
 	private:
@@ -357,6 +419,7 @@ public:
 
 		void AddStudentRecord()
 		{
+			
 			cout << "Please enter the students name" << endl;
 			getName();
 			cout << "Please enter the students ID" << endl;
@@ -364,7 +427,7 @@ public:
 			addMarks();
 			calculateGrade();
 			WriteData();
-			ResetData();
+			
 
 
 		}
@@ -392,12 +455,130 @@ public:
 			
 		};
 
+		void ModifyStudentRecord()
+		{
+			int choice;
+			string ModifyData[9];
+			string OriginalName, OriginalID;
+			string EditedName, EditedID;
+			double  EditedArabicMarks, EditedSocialStudiesMarks, EditedEnglishMarks, EditedSecondLanguageMarks, EditedMathematicsMarks, EditedScienceMarks, EditedGrade;
+			fstream StudentRecord;
+			
+
+			cout << "1.Search By Name\n" "2.Search By ID" << endl;
+
+
+			cin >> choice;
+			switch (choice)
+			{
+			case 1:
+			case 2:
+				cout << "Please enter the students Id" << endl;
+				cin.ignore(1, NULL);
+				getline(cin, OriginalID);
+				StudentRecord.open("Students Record.txt", ios::in);
+			
+
+
+					while (!StudentRecord.eof())
+					{
+
+						for (int i = 0; i < 9; i++)
+						{
+							getline(StudentRecord, ModifyData[i]);
+						}
+						if (ModifyData[1] == OriginalID)
+						{
+							delete ModifyData;
+							StudentRecord.close();
+							StudentRecord.open("Students Record.txt", ios::app);
+							cout << "The Student was found" << endl;
+							cout << "Please enter the edited Name" << endl;
+							getline(cin, EditedName);
+							ModifyData[0] = EditedName;
+							StudentRecord << "Name: " << ModifyData[0] << "\n";
+							cout << "Enter Edited ID " << endl;
+							getline(cin, EditedID);
+							ModifyData[1] = EditedID;
+							StudentRecord  << ModifyData[1] << "\n";
+							cout << "Please enter the edited Arabic Marks" << endl;
+							cin >> EditedArabicMarks;
+							ModifyData[2] = EditedArabicMarks;
+							StudentRecord << "Arabic Marks" << ModifyData[2] << "\n";
+							cout << "Please enter the edited Social Studies Marks" << endl;
+							cin >> EditedSocialStudiesMarks;
+							ModifyData[3] = EditedSocialStudiesMarks;
+							StudentRecord << "Social Studies Marks:" << ModifyData[3] << "\n";
+							cout << "Please enter the edited english marks" << endl;
+							cin >> EditedEnglishMarks;
+							ModifyData[4] = EditedEnglishMarks;
+							StudentRecord << "English Marks:" << ModifyData[4] << "\n";
+							cout << "Please enter the Second Language Marks" << endl;
+							cin >> EditedSecondLanguageMarks;
+							ModifyData[5] = EditedSecondLanguageMarks;
+							StudentRecord << "Second Language Marks:" << EditedSecondLanguageMarks << "\n";
+							cout << "Please enter the Mathematics Marks" << endl;
+							cin >> EditedMathematicsMarks;
+							ModifyData[6] = EditedMathematicsMarks;
+							StudentRecord << "Mathematics Marks:" << EditedMathematicsMarks << "\n";
+							cout << "Please enter the Science Marks" << endl;
+							cin >> EditedScienceMarks;
+							ModifyData[7] = EditedScienceMarks;
+							StudentRecord << "Science Marks:" << ModifyData[7] << "\n";
+							EditedGrade = ((EditedArabicMarks + EditedEnglishMarks + EditedMathematicsMarks + EditedScienceMarks + EditedSecondLanguageMarks + EditedSocialStudiesMarks) / 600);
+							ModifyData[8] = EditedGrade;
+							if (EditedGrade <= 100 && EditedGrade >= 90)
+							{
+								StudentRecord << "This student has achived an A grade with a total percentage of " << EditedGrade << "%" << endl;
+
+							}
+							else if (EditedGrade <= 89 && EditedGrade >= 80)
+							{
+								StudentRecord << "This student has achived an B grade with a total percentage of " << EditedGrade << "%" << endl;
+
+							}
+							else if (EditedGrade <= 79 && EditedGrade >= 70)
+							{
+								StudentRecord << "This student has achived an C grade with a total percentage of " << EditedGrade << "%" << endl;
+
+							}
+							else if (EditedGrade <= 69 && EditedGrade >= 60)
+							{
+								StudentRecord << "This student has achived an D grade with a total percentage of " << EditedGrade << "%" << endl;
+
+							}
+							else
+							{
+								StudentRecord << "This student has failed and got an F grade witha total percentage of " << EditedGrade << "%" << endl;
+							}
+							break;
+						}
 
 
 
+
+
+
+
+					}
+					if (ModifyData[1] != OriginalID && StudentRecord.eof())
+					{
+						cout << ModifyData[1] << endl;
+						cout << "The ID you searched for is unavailable in the system" << endl;
+
+					}
+
+			default:
+				break;
+				}
+				
+			
+
+		}
+		
 
 	};
-	class Menu : public StudentManagementSystem
+	class Menu : public StudentManagementSystem 
 	{
 	private:
 		int choice;
@@ -410,7 +591,6 @@ public:
 			cout << "3. Modify student record" << endl;
 			cout << "4. Generate mark sheet" << endl;
 			cout << "5. Delete student record" << endl;
-			cout << "6. Change admin password" << endl;
 			cout << "7. Exit" << endl;
 			cout << "Enter your choice: ";
 		}
@@ -422,10 +602,12 @@ public:
 		}
 		void ExecuteChoice() {
 			int choice;
+			int choice1;
 			choice = SelectOption();
 			switch (choice) {
 			case 1: 
 			{
+				ResetData();
 				AddStudentRecord();
 				break;
 			}
@@ -433,14 +615,50 @@ public:
 			case 2:
 			{
 				SearchStudentRecord();
+				cout << "Press:\n" << "1. Return to main menu\n" << "2. Exit the Program" << endl;
+				cin >> choice1;
+				if (choice1 == 1)
+				{
+					DisplayMenu();
+					ExecuteChoice();
+				}
+				else
+				{
+					MenuExitSystem();
+				}
+
 				break;
 			}
 			case 3:
 			{
+				ModifyStudentRecord();
+				cout << "Press:\n" << "1. Return to main menu\n" << "2. Exit the Program" << endl;
+				cin >> choice1;
+				if (choice1 == 1)
+				{
+					DisplayMenu();
+					ExecuteChoice();
+				}
+				else
+				{
+					MenuExitSystem();
+				}
 				break;
 			}
 			case 4:
 			{
+				GenerateMarksheet();
+				cout << "Press:\n" << "1. Return to main menu\n" << "2. Exit the Program" << endl;
+				cin >> choice1;
+				if (choice1 == 1)
+				{
+					DisplayMenu();
+					ExecuteChoice();
+				}
+				else
+				{
+					MenuExitSystem();
+				}
 				break;
 			}
 			case 5:
@@ -453,7 +671,7 @@ public:
 			}
 			case 7:
 			{
-
+				MenuExitSystem();
 				break;
 			}
 			default:
@@ -461,6 +679,9 @@ public:
 				break;
 			}
 		}
-
+		void MenuExitSystem()
+		{
+			exit(0);
+		}
 
 	};
