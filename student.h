@@ -552,6 +552,7 @@ public:
 								StudentRecord << "This student has failed and got an F grade witha total percentage of " << EditedGrade << "%" << endl;
 							}
 							break;
+							cout << "Student record Edited" << endl;
 						}
 
 
@@ -575,7 +576,34 @@ public:
 			
 
 		}
-		
+		void DeleteStudentRecord()
+		{
+			string ModifyData[9];
+			string DeletedName;
+			fstream StudentRecord;
+			StudentRecord.open("Students Record.txt", ios::app);
+			cout << "Please enter the Name of the student you want to delete his record" << endl;
+			cin.ignore(1, NULL);
+			getline(cin, DeletedName);
+
+			while (!StudentRecord.eof())
+			{
+				for (int i = 0; i < 9; i++)
+				{
+					getline(StudentRecord, ModifyData[i]);
+				}
+				if (ModifyData[0] == DeletedName)
+				{
+					for (int i = 0; i < 9; i++)
+					{
+						ModifyData[i] = "";
+						StudentRecord << ModifyData[i];
+					}
+					cout << "Student record Deleted" << endl;
+				}
+			}
+
+		}
 
 	};
 	class Menu : public StudentManagementSystem 
@@ -591,7 +619,7 @@ public:
 			cout << "3. Modify student record" << endl;
 			cout << "4. Generate mark sheet" << endl;
 			cout << "5. Delete student record" << endl;
-			cout << "7. Exit" << endl;
+			cout << "6. Exit" << endl;
 			cout << "Enter your choice: ";
 		}
 		int SelectOption()
@@ -609,6 +637,17 @@ public:
 			{
 				ResetData();
 				AddStudentRecord();
+				cout << "Press:\n" << "1. Return to main menu\n" << "2. Exit the Program" << endl;
+				cin >> choice1;
+				if (choice1 == 1)
+				{
+					DisplayMenu();
+					ExecuteChoice();
+				}
+				else
+				{
+					MenuExitSystem();
+				}
 				break;
 			}
 
@@ -663,13 +702,22 @@ public:
 			}
 			case 5:
 			{
+				DeleteStudentRecord();
+				cout << "Press:\n" << "1. Return to main menu\n" << "2. Exit the Program" << endl;
+				cin >> choice1;
+				if (choice1 == 1)
+				{
+					DisplayMenu();
+					ExecuteChoice();
+				}
+				else
+				{
+					MenuExitSystem();
+				}
 				break;
 			}
+			
 			case 6:
-			{
-				break;
-			}
-			case 7:
 			{
 				MenuExitSystem();
 				break;

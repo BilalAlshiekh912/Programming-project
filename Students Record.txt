@@ -7,3 +7,12 @@ Arabic Marks: 100
  Mathematics Marks:  97
  Science Marks: 92
 This student has achived an A grade with a total percentage of 96.5%
+Bilal
+222222
+Arabic Marks: 100
+ Social Studies Marks: 98
+ English Marks: 97
+ Second Language Marks: 51
+ Mathematics Marks:  100
+ Science Marks: 100
+This student has achived an A grade with a total percentage of 91%
